@@ -1,0 +1,90 @@
+Rice Farming Guide
+
+  1. Crop Season:
+   - Kharif (Monsoon) Season: Sown in June-July and harvested in September-October.
+   - Rabi Season: Sown in November-December and harvested in March-April.
+   - Summer Season: Sown in January-February and harvested in April-May.
+
+  2. Fertilizers:
+   - Nitrogen (N): 60-120 kg/ha (applied in splits - at transplanting, tillering, and panicle initiation).
+   - Phosphorus (P2O5): 30-60 kg/ha (basal application).
+   - Potassium (K2O): 30-60 kg/ha (basal application).
+   - Zinc Sulfate: 25 kg/ha (if zinc deficiency is observed).
+
+  3. Seed Types:
+   - High-Yielding Varieties (HYV): IR64, Swarna, MTU1010.
+   - Hybrid Varieties: PHB71, KRH-2.
+   - Traditional Varieties: Basmati, Sona Masuri.
+
+  4. Soil Type and Nutrients:
+   - Soil Type: Loamy, clayey loam, or silty loam soils with good water retention.
+   - Nutrients: Rich in organic matter, nitrogen, phosphorus, potassium, and micro-nutrients like zinc and iron.
+
+  5. Soil pH:
+   - Ideal pH range: 5.5 - 6.5.
+
+  6. Steps to Grow Rice:
+   1. Seed Selection and Treatment:
+      - Select high-quality seeds.
+      - Treat seeds with fungicide (e.g., Carbendazim) to prevent seed-borne diseases.
+
+   2. Nursery Preparation:
+      - Prepare nursery beds.
+      - Sow seeds densely in the nursery.
+
+   3. Field Preparation:
+      - Plow and puddle the field.
+      - Level the field for uniform water distribution.
+
+   4. Transplanting:
+      - Transplant 20-25 days old seedlings from the nursery to the main field.
+      - Maintain a spacing of 20x15 cm.
+
+   5. Water Management:
+      - Keep the field flooded with 2-5 cm of water during the vegetative stage.
+      - Drain water 10-15 days before harvest.
+
+   6. Weed Management:
+      - Manual weeding or use of herbicides (e.g., Butachlor, Pretilachlor).
+
+   7. Fertilizer Application:
+      - Apply fertilizers as per recommended doses and timing.
+
+   8. Pest and Disease Management:
+      - Monitor and control pests (e.g., stem borer, leaf folder) using integrated pest management (IPM) practices.
+      - Treat diseases (e.g., blast, bacterial leaf blight) with appropriate fungicides and bactericides.
+
+   9. Harvesting:
+      - Harvest when grains are fully matured and have 20-25% moisture content.
+
+  7. Methods to Improve Yield:
+   - Use high-yielding or hybrid varieties.
+   - Adopt System of Rice Intensification (SRI) technique.
+   - Ensure balanced fertilization.
+   - Practice integrated pest management (IPM).
+   - Use improved water management techniques.
+
+  8. Irrigation Techniques:
+   - Flood Irrigation: Commonly used in rice paddies.
+   - Alternate Wetting and Drying (AWD): To save water and improve yield.
+   - Drip Irrigation: Not commonly used but can be adapted in water-scarce areas.
+
+  9. Common Pests and Management:
+   - Stem Borer: Use pheromone traps, biological control (Trichogramma), and insecticides.
+   - Leaf Folder: Biological control (parasitoids), light traps, and insecticides.
+   - Brown Planthopper: Use resistant varieties, reduce nitrogenous fertilizers, and apply insecticides.
+
+  10. Common Weeds and Management:
+   - Echinochloa spp. (Barnyard Grass): Manual weeding, herbicides (Butachlor).
+   - Cyperus spp. (Sedges): Herbicides (2,4-D).
+
+  11. Storage Methods:
+   - Dry grains to 12-14% moisture content.
+   - Store in airtight containers or bags.
+   - Use insecticides or fumigants to protect from storage pests.
+
+  12. Dealing with Unfavorable Climate:
+   - Drought: Use drought-resistant varieties, adopt AWD irrigation, mulching.
+   - Flood: Use flood-tolerant varieties, proper field drainage.
+   - Cold: Use cold-tolerant varieties, adjust planting dates to avoid peak cold periods.
+   - Heat: Use heat-tolerant varieties, adjust planting dates to avoid peak heat periods.

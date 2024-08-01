@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation</title>
+    <link rel="stylesheet" href="./recomendation.css">
+</head>
+<body>
+    <div class="recomend-main-container background-container">
+        <div class="recomend-top-section content">
+            <h1 class="wether-heading">Weather Prediction for the Next Season</h1>
+            <div class="weather-info">
+                <div class="weather-desc">
+                    <div>
+                        <img src="./static/celsius_6100571.png" alt="temp" class="weather-img">
+                    </div>
+                    <div>
+                        <p class="weather-type">Temperature</p>
+                        <p class="weather-val" id="temperature"></p>
+                    </div>
+                </div>
+                <div class="weather-desc">
+                    <div>
+                        <img src="./static/humidity_icon.png" alt="humidity" class="weather-img">
+                    </div>
+                    <div>
+                        <p class="weather-type">Humidity</p>
+                        <p class="weather-val" id="humidity"></p>
+                    </div>
+                </div>
+                <div class="weather-desc">
+                    <div>
+                        <img src="./static/rainfall_icon.png" alt="rainfall" class="weather-img">
+                    </div>
+                    <div>
+                        <p class="weather-type">Rainfall</p>
+                        <p class="weather-val" id="rainfall"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="recommendation-section content">
+            <div class="crop-details">
+                <div class="selected-crop">
+                    <h1 id="crop1"></h1>
+                </div>
+                <div class="crop-suggest-params">
+                    <div class="crop-desc">
+                        <p class="desc-type">Expenditure</p>
+                        <img src="./static/expenditure.png" alt="expenditure" class="desc-img">
+                        <p class="desc-val" id="expenditure1"></p>
+                    </div>
+                    <div class="crop-desc">
+                        <p class="desc-type">Yield</p>
+                        <img src="./static/yeild.png" alt="yield" class="desc-img">
+                        <p class="desc-val" id="yield1"></p>
+                    </div>  
+                    <div class="crop-desc">
+                        <p class="desc-type">Profit</p>
+                        <img src="./static/profit.png" alt="profit" class="desc-img">
+                        <p class="desc-val" id="income1"></p>
+                    </div>
+                </div>
+                <button id="firstCrop">Get Suggestions</button>
+            </div>
+            <div class="crop-details">
+                <div class="selected-crop">
+                    <h1 id="crop2"></h1>
+                </div>
+                <div class="crop-suggest-params">
+                    <div class="crop-desc">
+                        <p class="desc-type">Expenditure</p>
+                        <img src="./static/expenditure.png" alt="expenditure" class="desc-img">
+                        <p class="desc-val" id="expenditure2"></p>
+                    </div>
+                    <div class="crop-desc">
+                        <p class="desc-type">Yield</p>
+                        <img src="./static/yeild.png" alt="yield" class="desc-img">
+                        <p class="desc-val" id="yield2"></p>
+                    </div>  
+                    <div class="crop-desc">
+                        <p class="desc-type">Profit</p>
+                        <img src="./static/profit.png" alt="profit" class="desc-img">
+                        <p class="desc-val" id="income2"></p>
+                    </div>
+                </div>
+                <button id="secondCrop">Get Suggestions</button>
+            </div>
+        </div>
+        <div class="recomend-bottom-section content">
+            <h1 class="soil-heading">Soil Conditions of your Area</h1>
+            <div class="soil-info">
+                <div class="soil-desc">
+                    <div>
+                        <img src="./static/n.png" alt="n" class="soil-img">
+                    </div>
+                    <div>
+                        <p class="soil-type">Nitrogen</p>
+                        <p class="soil-val" id="nitrogen"></p>
+                    </div>
+                </div>
+                <div class="soil-desc">
+                    <div>
+                        <img src="./static/p.png" alt="p" class="soil-img">
+                    </div>
+                    <div>
+                        <p class="soil-type">Phosphorous</p>
+                        <p class="soil-val" id="phosphorous"></p>
+                    </div>
+                </div>
+                <div class="soil-desc">
+                    <div>
+                        <img src="./static/k.png" alt="k" class="soil-img">
+                    </div>
+                    <div>
+                        <p class="soil-type">Potassium</p>
+                        <p class="soil-val" id="potassium"></p>
+                    </div>
+                </div>
+                <div class="soil-desc">
+                    <div>
+                        <img src="./static/pHicon.png" alt="ph" class="soil-img">
+                    </div>
+                    <div>
+                        <p class="soil-type">pH</p>
+                        <p class="soil-val" id="ph"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./recomendation.js"></script>
+</body>
+</html>
