@@ -58,7 +58,7 @@ body {
     margin-left: 30px;
 }
 
-.crop-details {
+.crop-details1, .crop-details2 {
     height: 100%;
 }
 
@@ -137,12 +137,27 @@ body {
     overflow-y: auto;
 }
 
-.crop-details {
+.crop-details1 {
+    background-image: url("./static/coconut.jpeg");
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     width: 40%;
     height: 100%;
+    border-top-left-radius:20px ;
+    border-top-right-radius: 20px;
+}
+.crop-details2 {
+    background-image: url("./static/rice.jpeg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 40%;
+    height: 100%;
+    border-top-left-radius:20px ;
+    border-top-right-radius: 20px;
 }
 .selected-crop{
     height: 100%;
@@ -313,7 +328,17 @@ button:hover {
         border-radius: 10px;
     }
 
-    .crop-details {
+    .crop-details1 {
+        background-image: url("./static/coconut.jpeg");
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 100%;
+        height: 100%;
+        margin-bottom: 30px;
+    }
+    .crop-details2 {
+        background-image: url("./static/rice.jpeg");
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -337,4 +362,42 @@ button:hover {
     .recomend-bottom-section .soil-info {
         justify-content: flex-end;
     }
+}
+
+/* loading.css */
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none; /* Initially hidden */
+}
+
+.loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-overlay p {
+    margin-top: 20px;
+    color: #fff;
+    font-size: 1.5em;
+    text-align: center;
 }

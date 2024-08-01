@@ -48,6 +48,16 @@
         <button type="submit">Get Crop Recommendation</button>
       </form>
     </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-content">
+          <div class="loader"></div>
+          <div class="loading-text" id="loadingText"></div>
+          <div class="loading-text-caution">Caution : Since We are deployinhg it in free web platforms, you may expericence slight delay in getting response from our ml models when the services are scaled down due to inactivity.</div>
+      </div>
+    </div>
+
     <script src="./home.js"></script>
   </body>
 </html>

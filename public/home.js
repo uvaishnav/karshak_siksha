@@ -1,3 +1,5 @@
+// home.js
+
 document.addEventListener("DOMContentLoaded", function() {
     const homeBottomContainer = document.getElementById("home-bottom-container");
     const homeTopContainer = document.getElementById("home-top-container");
@@ -25,9 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         mainHeading.classList.add("transition-color");
         homeMainContainer.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
         topHomeHeading.style.margin = 0;
-
         productDesc.style.display = "block";
-
     }, 2000);
 
     function typeEffect() {
@@ -58,8 +58,6 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(function() {
         homeBottomContainer.style.opacity = "1";
     }, 2200);
-
-
 });
 
 async function getLocationAndSubmit() {
@@ -67,11 +65,33 @@ async function getLocationAndSubmit() {
         navigator.geolocation.getCurrentPosition(async (position) => {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
-            console.log(latitude)
             const landSize = document.getElementById("land-size").value;
+            const loadingOverlay = document.getElementById("loadingOverlay");
+            const loadingText = document.getElementById("loadingText");
+
+            // Show the loading overlay
+            loadingOverlay.style.display = 'flex';
+
+            const messages = [
+                'Getting your location info....',
+                'Getting soil conditions based on your location....',
+                'Forecasting weather conditions in your area for next season.....',
+                'Extracting best Crop recommendations for you.....',
+                'Estimating Cost....',
+                'Predicting Yield you can make.......'
+            ];
+
+            // Display messages one after the other
+            messages.forEach((message, index) => {
+                setTimeout(() => {
+                    loadingText.innerHTML = `<span>${message}</span>`;
+                    // Fade in effect
+                    loadingText.querySelector('span').style.opacity = 1;
+                }, index * 2000); // Change messages every 5 seconds
+            });
 
             try {
-                const response = await fetch('./get-crop-recommendation',{
+                const response = await fetch('./get-crop-recommendation', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -83,10 +103,15 @@ async function getLocationAndSubmit() {
                     const data = await response.json();
                     sessionStorage.setItem("recommendation", JSON.stringify(data.recommendation));
                     sessionStorage.setItem("datac", JSON.stringify(data.payload));
-                    sessionStorage.setItem("yieldCrop1",data.yieldCrop1);
-                    sessionStorage.setItem("yieldCrop2",data.yieldCrop2);
+                    sessionStorage.setItem("yieldCrop1", data.yieldCrop1);
+                    sessionStorage.setItem("yieldCrop2", data.yieldCrop2);
                     sessionStorage.setItem("landSize", data.landSize);
-                    window.location.href = '/recomendation.html';
+                    
+                    // Redirect to the recommendation page after the overlay is hidden
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none';
+                        window.location.href = '/recomendation.html';
+                    }, messages.length * 5000);
                 } else {
                     console.error('Error in response:', response.statusText);
                 }

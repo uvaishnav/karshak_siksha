@@ -37,17 +37,28 @@ document.addEventListener("DOMContentLoaded", async function() {
     recomend1.textContent = recomendation['first_crop'];
     recomend2.textContent = recomendation['second_crop'];
 
-    yeild1.textContent = parseFloat(yieldCrop1).toFixed(2);
-    yeild2.textContent = parseFloat(yieldCrop2).toFixed(2);
+
+    yeild1.textContent = parseFloat((yieldCrop1/2.47105)*100).toFixed(2)+"kg/acre";
+    yeild2.textContent = parseFloat((yieldCrop2/2.47105)*100).toFixed(2)+"kg/acre";
 
     nitrogen.textContent = parseFloat(datac['N']).toFixed(2);
     potassium.textContent = parseFloat(datac['K']).toFixed(2);
     phosphorous.textContent = parseFloat(datac['P']).toFixed(2);
     ph.textContent = parseFloat(datac['ph']).toFixed(2);
     
-    tempVal.textContent = parseFloat(datac['temperature']).toFixed(2);
-    humidityVal.textContent = parseFloat(datac['humidity']).toFixed(2);
-    rainfallVal.textContent = parseFloat(datac['rainfall']).toFixed(2);
+    tempVal.textContent = parseFloat(datac['temperature']).toFixed(2) + "°C";
+    humidityVal.textContent = parseFloat(datac['humidity']).toFixed(2); + "%";
+    rainfallVal.textContent = parseFloat(datac['rainfall']).toFixed(2); + "mm";
+
+    const loadingOverlay = document.getElementById("loading-overlay");
+
+    const showLoadingOverlay = () => {
+        loadingOverlay.style.display = 'flex';
+    };
+
+    const hideLoadingOverlay = () => {
+        loadingOverlay.style.display = 'none';
+    };
 
     async function fetchCropCostData(crop_name) {
         try {
@@ -73,10 +84,10 @@ document.addEventListener("DOMContentLoaded", async function() {
     console.log(dataObj1);
     console.log(dataObj2);
 
-    function calculateFarmerProfit(costPerHectare, yieldPerHectare, acres, marketCostPerKg) {
+    function calculateFarmerProfit(marketCostPerKg, yieldPerHectare, acres,costPerHectare) {
         // Constants
         const hectaresPerAcre = 0.404686; // 1 acre = 0.404686 hectares
-        const kgPerTonne = 1000; // 1 tonne = 1000 kg
+        const kgPerTonne = 10; // 1 tonne = 1000 kg
     
         // Convert acres to hectares
         const hectares = acres * hectaresPerAcre;
@@ -116,11 +127,11 @@ document.addEventListener("DOMContentLoaded", async function() {
             dataObj2.cropreturn
         );
 
-        expenditure1.textContent = cropProfits1.totalCost;
-        income1.textContent = cropProfits1.profit;
+        expenditure1.textContent = "₹"+cropProfits1.totalCost;
+        income1.textContent = "₹"+cropProfits1.profit;
 
-        expenditure2.textContent = cropProfits2.totalCost;
-        income2.textContent = cropProfits2.profit;
+        expenditure2.textContent = "₹"+cropProfits2.totalCost;
+        income2.textContent = "₹"+cropProfits2.profit;
     } else {
         console.error('Failed to calculate profits due to missing crop cost data.');
     }
@@ -188,12 +199,16 @@ document.addEventListener("DOMContentLoaded", async function() {
     firstCrop.addEventListener("click", async () => {
         const recommendation = JSON.parse(sessionStorage.getItem("recommendation"));
         const crop_name = recommendation['first_crop'];
+        showLoadingOverlay();
         await get_suggestions(crop_name);
+        hideLoadingOverlay();
     });
 
     secondCrop.addEventListener("click", async () => {
         const recommendation = JSON.parse(sessionStorage.getItem("recommendation"));
         const crop_name = recommendation['second_crop'];
+        showLoadingOverlay();
         await get_suggestions(crop_name);
+        hideLoadingOverlay();
     });
 });
