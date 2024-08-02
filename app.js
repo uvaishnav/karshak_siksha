@@ -87,13 +87,11 @@ async function sendMessage(message) {
 app.post('/generate-suggestion', async (req, res) => {
   try {
     const {crop_name,temperature,humidity,rainfall,n,p,k,ph} = req.body;
-    const npk = n
+    const soilType = 'laterite'
 
     const cropContent = fs.readFileSync(path.join(__dirname, `crops/${crop_name}.txt`), 'utf-8');
 
-    const soilType = 'lofy'
-
-    const prompt = `${crop_name} crop details: Temperature: ${temperature}, Humidity: ${humidity}, Rainfall: ${rainfall},NPK: ${npk}, pH: ${ph}, Soil Type: ${soilType}. txt content: ${cropContent}. Provide suggestions covering 1) soilAndSeeds: soil preparation, seed selection, seed treatment, 2) cropPlan: sowing time, spacing, nutrient management, 3) pestManagement: integrated pest management, biological control, chemical control, disease control, 4) waterIrrigationManagement: irrigation schedule, water conservation, 5) storageAfterYield: drying, storage conditions, milling, 6) riskMitigation: weather monitoring, insurance, crop diversification in JSON format keep cropSuggestions as main key example "cropSuggestions": {
+    const prompt = `${crop_name} crop details: Temperature: ${temperature}, Humidity: ${humidity}, Rainfall: ${rainfall},Nitrogen: ${n},Potassium : ${k}, Phosphorous :${p}, pH: ${ph}, Soil Type: ${soilType}. txt content: ${cropContent}. Provide suggestions covering 1) soilAndSeeds: soil preparation, seed selection, seed treatment, 2) cropPlan: sowing time, spacing, nutrient management, 3) pestManagement: integrated pest management, biological control, chemical control, disease control, 4) waterIrrigationManagement: irrigation schedule, water conservation, 5) storageAfterYield: drying, storage conditions, milling, 6) riskMitigation: weather monitoring, insurance, crop diversification in JSON format keep cropSuggestions as main key example "cropSuggestions": {
       "soilAndSeeds": {`;
 
     const suggestion = await sendMessage(prompt);
@@ -123,11 +121,12 @@ app.post('/get-crop-recommendation', async (req, res) => {
     const regionResponse = await fetch(url);
     const regionData = await regionResponse.json();
     const stateName = regionData.region.toUpperCase();
+    // const stateName = 'ANDHRA PRADESH'
 
     console.log(stateName);
     
-    const stateResponse = await fetch(`http://localhost:${port}/state/${stateName}`);
-    const stateData = await stateResponse.json();
+    const stateData = await getSoilData(stateName);
+    console.log(stateData)
     const { Avg_Nitrogen, Avg_Phosphorous, Avg_Potassium, pH } = stateData[0];
 
     console.log(Avg_Nitrogen, Avg_Phosphorous, Avg_Potassium, pH);
@@ -248,7 +247,8 @@ app.post('/get-crop-recommendation', async (req, res) => {
 app.use(session({
   secret: 'your-secret-key', // Change this to a secure secret key
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: { secure: false }
 }));
 
 app.get('/', (req, res) => {
@@ -278,25 +278,43 @@ app.get('/data/:id', async (req, res) => {
 });
 
 // Endpoint to get data by state name
-app.get('/state/:name', async (req, res) => {
-  const stateName = req.params.name;
-
+const getSoilData = async (state_name) =>{
+  const stateName = state_name
   try {
     const snapshot = await firestore.collection('statesData')
                                     .where('State', '==', stateName)
                                     .get();
 
     if (snapshot.empty) {
-      return res.status(404).send('State not found');
+      return NaN;
     }
 
     const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    res.json(data);
+    return data;
   } catch (error) {
     console.error('Error fetching data:', error);
-    res.status(500).send('Internal Server Error');
   }
-});
+}
+
+// app.get('/state/:name', async (req, res) => {
+//   const stateName = req.params.name;
+
+//   try {
+//     const snapshot = await firestore.collection('statesData')
+//                                     .where('State', '==', stateName)
+//                                     .get();
+
+//     if (snapshot.empty) {
+//       return res.status(404).send('State not found');
+//     }
+
+//     const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+//     res.json(data);
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// });
 
 // Endpoint to get all data
 app.get('/data', async (req, res) => {
