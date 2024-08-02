@@ -119,9 +119,9 @@ app.post('/get-crop-recommendation', async (req, res) => {
 
   try {
     const regionResponse = await fetch(url);
-    const regionData = await regionResponse.json();
-    const stateName = regionData.region.toUpperCase();
-    // const stateName = 'ANDHRA PRADESH'
+    // const regionData = await regionResponse.json();
+    // const stateName = regionData.region.toUpperCase();
+    const stateName = 'ANDHRA PRADESH'
 
     console.log(stateName);
     
