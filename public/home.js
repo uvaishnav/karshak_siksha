@@ -87,7 +87,7 @@ async function getLocationAndSubmit() {
                     loadingText.innerHTML = `<span>${message}</span>`;
                     // Fade in effect
                     loadingText.querySelector('span').style.opacity = 1;
-                }, index * 2000); // Change messages every 5 seconds
+                }, index * 1000); // Change messages every seconds
             });
 
             try {
@@ -107,16 +107,16 @@ async function getLocationAndSubmit() {
                     sessionStorage.setItem("yieldCrop2", data.yieldCrop2);
                     sessionStorage.setItem("landSize", data.landSize);
                     
-                    // Redirect to the recommendation page after the overlay is hidden
-                    setTimeout(() => {
-                        loadingOverlay.style.display = 'none';
-                        window.location.href = '/recomendation.html';
-                    }, messages.length * 5000);
+                    // Redirect to the recommendation page
+                    loadingOverlay.style.display = 'none';
+                    window.location.href = '/recomendation.html';
                 } else {
                     console.error('Error in response:', response.statusText);
+                    loadingOverlay.style.display = 'none'; // Hide the overlay on error
                 }
             } catch (error) {
                 console.error('Error fetching recommendation:', error);
+                loadingOverlay.style.display = 'none'; // Hide the overlay on error
             }
         }, error => {
             console.error('Error getting location:', error);

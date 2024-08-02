@@ -1,63 +1,63 @@
 <!-- home.html -->
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Home Page</title>
     <link rel="stylesheet" href="./home.css"/>
-  </head>
-  <body>
+</head>
+<body>
     <div class="home-main-container" id="home-main-container">
-      <video autoplay muted id="video-background">
-        <source src="./static/homebgcrop.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div class="top-section">
-        <h1 id="main-heading">NAVACHARAS</h1>
-        <button>Contact Us</button>
-      </div>
-      <div class="home-top-container" id="home-top-container">
-        <h1 class="top-home-heading">
-          Our AI-driven solution helps farmers make informed decisions amidst
-          unpredictable weather and varying soil conditions.
-        </h1>
-      </div>
-      <div class="product-desc" id="product-desc">
-        <p>
-          We provide <br /><span class="type-effect">Crop Recommendation</span>
-          <span class="type-effect">Risk Mitigation Strategies</span>
-          <span class="type-effect">Efficient Farming Techniques</span><br />
-          based on the forecasted weather patterns and soil conditions of your
-          Area
-        </p>
-      </div>
-      <form
-        class="home-bottom-container"
-        id="home-bottom-container"
-        onsubmit="getLocationAndSubmit();event.preventDefault();"
-      >
-        <div class="input-land">
-          <p>How many acres of land do you cultivate?</p>
-          <input
-            type="number"
-            name="land-size"
-            id="land-size"
-            placeholder="Ex: 2"
-            required
-          />
+        <video autoplay muted id="video-background">
+            <source src="./static/homebgcrop.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        <div class="top-section">
+            <h1 id="main-heading">NAVACHARAS</h1>
+            <button>Contact Us</button>
         </div>
-        <button type="submit">Get Crop Recommendation</button>
-      </form>
+        <div class="home-top-container" id="home-top-container">
+            <h1 class="top-home-heading">
+                Our AI-driven solution helps farmers make informed decisions amidst
+                unpredictable weather and varying soil conditions.
+            </h1>
+        </div>
+        <div class="product-desc" id="product-desc">
+            <p>
+                We provide <br /><span class="type-effect">Crop Recommendation</span>
+                <span class="type-effect">Risk Mitigation Strategies</span>
+                <span class="type-effect">Efficient Farming Techniques</span><br />
+                based on the forecasted weather patterns and soil conditions of your
+                Area
+            </p>
+        </div>
+        <form
+            class="home-bottom-container"
+            id="home-bottom-container"
+            onsubmit="getLocationAndSubmit();event.preventDefault();"
+        >
+            <div class="input-land">
+                <p>How many acres of land do you cultivate?</p>
+                <input
+                    type="number"
+                    name="land-size"
+                    id="land-size"
+                    placeholder="Ex: 2"
+                    required
+                />
+            </div>
+            <button type="submit">Get Crop Recommendation</button>
+        </form>
     </div>
 
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
-      <div class="loading-content">
-          <div class="loader"></div>
-          <div class="loading-text" id="loadingText"></div>
-          <div class="loading-text-caution">Caution : Since We are deployinhg it in free web platforms, you may expericence slight delay in getting response from our ml models when the services are scaled down due to inactivity.</div>
-      </div>
+        <div class="loading-content">
+            <div class="loader"></div>
+            <div class="loading-text" id="loadingText"></div>
+            <div class="loading-text-caution">Caution : Since We are deploying it in free web platforms, you may experience slight delay in getting response from our ml models when the services are scaled down due to inactivity.</div>
+        </div>
     </div>
 
     <script src="./home.js"></script>
-  </body>
+</body>
 </html>
