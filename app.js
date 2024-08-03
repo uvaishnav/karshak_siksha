@@ -114,15 +114,12 @@ app.post('/generate-suggestion', async (req, res) => {
 });
 
 app.post('/get-crop-recommendation', async (req, res) => {
-  const token = process.env.STOKEN; 
-  const url = `https://ipinfo.io/json?token=${token}`;
-
   try {
-    const regionResponse = await fetch(url);
-    // const regionData = await regionResponse.json();
-    // const stateName = regionData.region.toUpperCase();
-    const stateName = 'ANDHRA PRADESH'
+    const { landSize, latitude, longitude } = req.body;
+    console.log(landSize, latitude, longitude);
 
+    let stateName = await getStateName(latitude, longitude);
+    stateName = stateName.toUpperCase();
     console.log(stateName);
     
     const stateData = await getSoilData(stateName);
@@ -130,10 +127,6 @@ app.post('/get-crop-recommendation', async (req, res) => {
     const { Avg_Nitrogen, Avg_Phosphorous, Avg_Potassium, pH } = stateData[0];
 
     console.log(Avg_Nitrogen, Avg_Phosphorous, Avg_Potassium, pH);
-
-    const { landSize, latitude, longitude } = req.body;
-
-    console.log(landSize, latitude, longitude);
    
     const startDate = new Date();
     const endDate = new Date(startDate);
@@ -277,6 +270,35 @@ app.get('/data/:id', async (req, res) => {
   }
 });
 
+async function getStateName(lat, lng) {
+  const apiKey = process.env.STOKEN // Add your API key here
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`;
+
+  try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (data.status === "OK") {
+          const results = data.results;
+          for (let i = 0; i < results.length; i++) {
+              const addressComponents = results[i].address_components;
+              for (let j = 0; j < addressComponents.length; j++) {
+                  const types = addressComponents[j].types;
+                  if (types.includes("administrative_area_level_1")) {
+                      const state = addressComponents[j].long_name;
+                      console.log("State Name:", state);
+                      return state;
+                  }
+              }
+          }
+      } else {
+          console.error("Geocoding API error:", data.status);
+      }
+  } catch (error) {
+      console.error("Error fetching the Geocoding API:", error);
+  }
+}
+
 // Endpoint to get data by state name
 const getSoilData = async (state_name) =>{
   const stateName = state_name
@@ -296,25 +318,6 @@ const getSoilData = async (state_name) =>{
   }
 }
 
-// app.get('/state/:name', async (req, res) => {
-//   const stateName = req.params.name;
-
-//   try {
-//     const snapshot = await firestore.collection('statesData')
-//                                     .where('State', '==', stateName)
-//                                     .get();
-
-//     if (snapshot.empty) {
-//       return res.status(404).send('State not found');
-//     }
-
-//     const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-//     res.json(data);
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-//     res.status(500).send('Internal Server Error');
-//   }
-// });
 
 // Endpoint to get all data
 app.get('/data', async (req, res) => {

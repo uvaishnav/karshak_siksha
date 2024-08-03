@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", async function() {
     const potassium = document.getElementById("potassium");
     const ph = document.getElementById("ph");
 
+    const CropContainer1 = document.getElementById("crop-details1")
+    const CropContainer2 = document.getElementById("crop-details2")
+
     const firstCrop = document.getElementById("firstCrop");
     const secondCrop = document.getElementById("secondCrop");
 
@@ -36,6 +39,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     recomend1.textContent = recomendation['first_crop'];
     recomend2.textContent = recomendation['second_crop'];
+
+    CropContainer1.style.backgroundImage = `url('./static/${recomendation['first_crop']}.jpeg')`;
+    CropContainer2.style.backgroundImage = `url('./static/${recomendation['second_crop']}.jpeg')`;
 
 
     yeild1.textContent = parseFloat((yieldCrop1/2.47105)*100).toFixed(2)+"kg/acre";
@@ -78,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         }
     }
 
-    const dataObj1 = await fetchCropCostData('rice');
+    const dataObj1 = await fetchCropCostData(recomendation['first_crop']);
     const dataObj2 = await fetchCropCostData(recomendation['second_crop']);
 
     console.log(dataObj1);
@@ -87,7 +93,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     function calculateFarmerProfit(marketCostPerKg, yieldPerHectare, acres,costPerHectare) {
         // Constants
         const hectaresPerAcre = 0.404686; // 1 acre = 0.404686 hectares
-        const kgPerTonne = 10; // 1 tonne = 1000 kg
+        const kgPerTonne = 100; // 1 tonne = 1000 kg
     
         // Convert acres to hectares
         const hectares = acres * hectaresPerAcre;
@@ -97,7 +103,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     
         // Calculate total yield in kg
         const totalYieldTonne = yieldPerHectare * hectares;
-        const totalYieldKg = totalYieldTonne * kgPerTonne;
+        const totalYieldKg = (totalYieldTonne/4) * kgPerTonne; // Cause yeild per Tonne is for one year
     
         // Calculate total revenue
         const totalRevenue = totalYieldKg * marketCostPerKg;
