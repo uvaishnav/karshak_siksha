@@ -90,10 +90,10 @@ document.addEventListener("DOMContentLoaded", async function() {
     console.log(dataObj1);
     console.log(dataObj2);
 
-    function calculateFarmerProfit(marketCostPerKg, yieldPerHectare, acres,costPerHectare) {
+    function calculateFarmerProfit(costPerHectare,yieldPerHectare, acres,marketCostPerKg,) {
         // Constants
         const hectaresPerAcre = 0.404686; // 1 acre = 0.404686 hectares
-        const kgPerTonne = 100; // 1 tonne = 1000 kg
+        const kgPerTonne = 1000; 
     
         // Convert acres to hectares
         const hectares = acres * hectaresPerAcre;
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     
         // Calculate total yield in kg
         const totalYieldTonne = yieldPerHectare * hectares;
-        const totalYieldKg = (totalYieldTonne/4) * kgPerTonne; // Cause yeild per Tonne is for one year
+        const totalYieldKg = (totalYieldTonne) * kgPerTonne; // Cause yeild per Tonne is for one year
     
         // Calculate total revenue
         const totalRevenue = totalYieldKg * marketCostPerKg;
