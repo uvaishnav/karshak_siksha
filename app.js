@@ -141,8 +141,8 @@ app.post('/get-crop-recommendation', async (req, res) => {
     const temperatureData = weatherData.properties.parameter.T2M;
     const humidityData = weatherData.properties.parameter.QV2M;
     const rainfallData = weatherData.properties.parameter.PRECTOTCORR;
-    const avgTemperature = Object.values(temperatureData).reduce((a, b) => a + b, 0) / Object.values(temperatureData).length;
-    const avgHumidity = Object.values(humidityData).reduce((a, b) => a + b, 0) / Object.values(humidityData).length;
+    const avgTemperature = Object.values(temperatureData).reduce((a, b) => a + b, 0) / Object.values(temperatureData).length +15; // temp predictions from NASA power API were giving low values we need a better reliable data for this.
+    const avgHumidity = Object.values(humidityData).reduce((a, b) => a + b, 0) / 30;
     const totalRainfall = Object.values(rainfallData).reduce((a, b) => a + b, 0);
     console.log(avgTemperature, avgHumidity, totalRainfall);
     const payload = {

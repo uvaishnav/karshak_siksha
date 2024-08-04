@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", async function() {
     CropContainer2.style.backgroundImage = `url('./static/${recomendation['second_crop']}.jpeg')`;
 
 
-    yeild1.textContent = parseFloat((yieldCrop1/2.47105)*100).toFixed(2)+"kg/acre";
-    yeild2.textContent = parseFloat((yieldCrop2/2.47105)*100).toFixed(2)+"kg/acre";
+    yeild1.textContent = parseFloat((yieldCrop1)*1000).toFixed(2)+"kg";
+    yeild2.textContent = parseFloat((yieldCrop2)*1000).toFixed(2)+"kg";
 
     nitrogen.textContent = parseFloat(datac['N']).toFixed(2);
     potassium.textContent = parseFloat(datac['K']).toFixed(2);
@@ -53,8 +53,8 @@ document.addEventListener("DOMContentLoaded", async function() {
     ph.textContent = parseFloat(datac['ph']).toFixed(2);
     
     tempVal.textContent = parseFloat(datac['temperature']).toFixed(2) + "°C";
-    humidityVal.textContent = parseFloat(datac['humidity']).toFixed(2); + "%";
-    rainfallVal.textContent = parseFloat(datac['rainfall']).toFixed(2); + "mm";
+    humidityVal.textContent = parseFloat(datac['humidity']).toFixed(2) + "%";
+    rainfallVal.textContent = parseFloat(datac['rainfall']).toFixed(2) + "mm";
 
     const loadingOverlay = document.getElementById("loading-overlay");
 
