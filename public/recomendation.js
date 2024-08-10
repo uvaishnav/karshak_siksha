@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", async function() {
     CropContainer2.style.backgroundImage = `url('./static/${recomendation['second_crop']}.jpeg')`;
 
 
-    yeild1.textContent = parseFloat((yieldCrop1)*1000).toFixed(2)+"kg";
-    yeild2.textContent = parseFloat((yieldCrop2)*1000).toFixed(2)+"kg";
+    yeild1.textContent = parseFloat((yieldCrop1/2.47105)*1000*landSize).toFixed(2)+"kg";
+    yeild2.textContent = parseFloat((yieldCrop2/2.47105)*1000*landSize).toFixed(2)+"kg";
 
     nitrogen.textContent = parseFloat(datac['N']).toFixed(2);
     potassium.textContent = parseFloat(datac['K']).toFixed(2);
